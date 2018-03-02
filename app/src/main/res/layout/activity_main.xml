@@ -36,11 +36,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_weight="1"
+                android:background="@drawable/gr_capsule_button"
                 android:clickable="true"
                 android:gravity="center"
                 android:onClick="restoreUpcoming"
                 android:text="@string/upcoming"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@android:color/background_light"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
 
@@ -98,7 +99,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/searchCLayout"
             android:layout_width="350dp"
-            android:layout_height="400dp"
+            android:layout_height="430dp"
             android:layout_marginTop="4dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -169,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/gray_capsule_button"
+                android:background="@drawable/br_capsule_button"
                 android:onClick="searchDateRange"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -184,7 +185,7 @@
                 android:id="@+id/yearPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="40dp"
                 android:background="@android:color/darker_gray"
                 android:calendarTextColor="@android:color/background_dark"
                 android:calendarViewShown="false"
@@ -199,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/gray_capsule_button"
+                android:background="@drawable/gy_capsule_button"
                 android:onClick="searchYear"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -208,6 +209,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/yearPicker" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:shadowColor="@color/colorAccent"
+                android:text="- - - - - - - - -  OR - - - - - - - - - -"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchRangeButton" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

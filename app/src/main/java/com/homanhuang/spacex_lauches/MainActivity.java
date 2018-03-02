@@ -25,7 +25,10 @@ import com.homanhuang.spacex_lauches.launch.Launch;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -307,14 +310,24 @@ public class MainActivity extends AppCompatActivity {
     /*
         Search Function: OnClick for SearchRangeButton
      */
-    public void searchDateRange(View v) {
+    public void searchDateRange(View v) throws ParseException {
         launchRecyclerView.setVisibility(View.VISIBLE);
         searchCLayout.setVisibility(View.INVISIBLE);
         searchBoxOn =false;
 
+        String startDate = getCurrentDate(startDatePicker, false);
+        String finalDate = getCurrentDate(finalDatePicker, false);
+
         Map<String, String> data = new HashMap<>();
-        data.put("start", getCurrentDate(startDatePicker, false));
-        data.put("final", getCurrentDate(finalDatePicker, false));
+
+        //compare the dates to decide the oldest
+        if (startDate.compareTo(finalDate) <= 0) {
+            data.put("start", startDate);
+            data.put("final", finalDate);
+        } else {
+            data.put("start", finalDate);
+            data.put("final", startDate);
+        }
         filterLaunch(data);
     }
 
