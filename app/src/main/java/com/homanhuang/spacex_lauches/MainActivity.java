@@ -308,6 +308,10 @@ public class MainActivity extends AppCompatActivity {
         Search Function: OnClick for SearchRangeButton
      */
     public void searchDateRange(View v) {
+        launchRecyclerView.setVisibility(View.VISIBLE);
+        searchCLayout.setVisibility(View.INVISIBLE);
+        searchBoxOn =false;
+
         Map<String, String> data = new HashMap<>();
         data.put("start", getCurrentDate(startDatePicker, false));
         data.put("final", getCurrentDate(finalDatePicker, false));
