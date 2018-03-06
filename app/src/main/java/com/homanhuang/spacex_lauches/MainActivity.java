@@ -1,9 +1,13 @@
 package com.homanhuang.spacex_lauches;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,6 +55,36 @@ public class MainActivity extends AppCompatActivity {
     /* Toast shortcut */
     public static void msg(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+    static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 201; // any code you want.
+    public void requestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
+                ltag("Permission is granted");
+            } else {
+                ltag("Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{
+                                Manifest.permission.INTERNET
+                        },
+                        REQUEST_ID_MULTIPLE_PERMISSIONS);
+            }
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        ltag("Permission:" + permissions.toString());
+
+        switch (requestCode) {
+            case REQUEST_ID_MULTIPLE_PERMISSIONS:
+                    msg(this, "Permission Granted!");
+
+                break;
+        }
     }
 
     //=====================================================================
@@ -367,6 +401,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        requestPermissions();
 
         /*
             BSON -> JAVA
